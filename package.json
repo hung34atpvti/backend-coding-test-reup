@@ -1,0 +1,51 @@
+{
+  "name": "backend-coding-test",
+  "version": "1.0.0",
+  "description": "A coding assessment for Xendit backend interviews",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node": ">8.6.0"
+  },
+  "scripts": {
+    "test": "mocha tests",
+    "start": "node index.js",
+    "swagger-gen": "node swagger.js",
+    "lint": "eslint ./ --ext .js",
+    "test-coverage": "nyc npm run test",
+    "test:load": "artillery run load-test-script.yml --output load-test.json"
+  },
+  "pre-push": [
+    "test"
+  ],
+  "keywords": [
+    "Xendit"
+  ],
+  "author": "Bo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "sqlite3": "^4.0.6",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2",
+    "swagger-autogen": "^2.19.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.17.0",
+    "nyc": "^15.1.0",
+    "pre-push": "^0.1.1",
+    "artillery": "^2.0.0-12"
+  }
+}

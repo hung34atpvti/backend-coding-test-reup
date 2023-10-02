@@ -1,0 +1,33 @@
+config:
+  target: "http://localhost:8010"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Load Test
+
+scenarios:
+  - name: "health"
+    flow:
+      - get:
+          url: "/health"
+  - name: "create and get"
+    flow:
+      - post:
+          url: "/rides"
+          json:
+            start_lat: '-90'
+            start_long: '-180'
+            end_lat: '90'
+            end_long: '180'
+            rider_name: 'testDriver'
+            driver_name: 'testRider'
+            driver_vehicle: 'testVehicle'
+          capture:
+            - json: "$[0].rideID"
+              as: "rideId"
+      - get:
+          url: "/rides/{{ rideId }}"
+  - name: "get all"
+    flow:
+      - get:
+          url: "/rides"
